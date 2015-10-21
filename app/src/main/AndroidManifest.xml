@@ -19,31 +19,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ChooseAlarmActivity"
-            android:label="@string/title_activity_choose_alarm"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
-            android:name=".WalkSetupActivity"
-            android:label="@string/title_activity_walk_setup"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
-            android:name=".TalkSetupActivity"
-            android:label="@string/title_activity_talk_setup"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
-            android:name=".ShakeSetupActivity"
-            android:label="@string/title_activity_shake_setup"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
-            android:name=".PlaySetupActivity"
-            android:label="@string/title_activity_play_setup"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
             android:name=".EditAlarmActivity"
             android:label="@string/title_activity_edit_alarm"
             android:theme="@style/AppTheme.NoActionBar" >

@@ -8,8 +8,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AlarmListActivity extends AppCompatActivity {
+
+    private List<Alarm> alarmList = new ArrayList<Alarm>();
+    private ListView listView;
+    private CustomListAdapter adapter;
+    private TextView title;
+    private ImageButton add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,15 +31,18 @@ public class AlarmListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alarm_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        title = (TextView) findViewById(R.id.title);
+        title.setText("Alarms");
+        add = (ImageButton) findViewById(R.id.addAlarm);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        Alarm a = new Alarm("SNOOZE", "Weekend", "11:00", true, false, true, true);
+        Alarm b = new Alarm("GET UP", "Weekdays", "07:00", false, false, true, true);
+        alarmList.add(a);
+        alarmList.add(b);
+        listView = (ListView) findViewById(R.id.listView);
+        adapter = new CustomListAdapter(this, alarmList);
+        listView.setAdapter(adapter);
+
     }
 
     @Override

@@ -35,10 +35,13 @@ public class AlarmListActivity extends AppCompatActivity {
         title.setText("Alarms");
         add = (ImageButton) findViewById(R.id.addAlarm);
 
-        Alarm a = new Alarm("SNOOZE", "Weekend", "11:00", true, false, true, true);
-        Alarm b = new Alarm("GET UP", "Weekdays", "07:00", false, false, true, true);
+        Alarm a = new Alarm("SNOOZE", "Weekend", "11:00", true, true, true, true);
+        Alarm b = new Alarm("GET UP", "Weekdays", "07:00", true, false, true, false);
+        Alarm c = new Alarm("WORK", "Weekdays", "18:00", false, true, false, true);
+
         alarmList.add(a);
         alarmList.add(b);
+        alarmList.add(c);
         listView = (ListView) findViewById(R.id.listView);
         adapter = new CustomListAdapter(this, alarmList);
         listView.setAdapter(adapter);

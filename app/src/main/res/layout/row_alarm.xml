@@ -8,14 +8,14 @@
         android:layout_height="wrap_content"
         android:background="@drawable/row_selector"
         android:orientation="horizontal"
-        android:layout_margin="10dp"
-        android:padding="15dip">
+        android:paddingTop="15dip"
+        android:paddingBottom="15dip">
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Small Text"
             android:id="@+id/time" />
 
@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Small Text"
             android:id="@+id/name"
             android:layout_alignParentTop="true"
@@ -43,31 +43,32 @@
             android:id="@+id/alarmButton"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginLeft="30dp"
             android:background="@drawable/alarm_on"/>
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:id="@+id/gpsIcon"
-            android:layout_centerHorizontal="true"
+            android:layout_toStartOf="@+id/speakIcon"
             android:layout_marginTop="25dp"
             android:background="@drawable/gps"/>
 
         <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:id="@+id/speakIcon"
-        android:layout_alignTop="@+id/gpsIcon"
-        android:layout_toEndOf="@+id/gpsIcon"
-        android:background="@drawable/mic"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/speakIcon"
+            android:layout_marginTop="25dp"
+
+            android:layout_toStartOf="@+id/shakeIcon"
+            android:background="@drawable/mic"/>
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:id="@+id/shakeIcon"
-            android:layout_alignTop="@+id/speakIcon"
-            android:layout_toEndOf="@+id/speakIcon"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="50dp"
+            android:layout_toStartOf="@+id/alarmButton"
             android:background="@drawable/shake"/>
     </RelativeLayout>
 

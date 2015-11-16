@@ -75,15 +75,27 @@ public class CustomListAdapter extends BaseAdapter {
 
         if(!a.getWalk())
         {
-            gps.setAlpha(((float) 0.3));
+            gps.setAlpha(((float) 0.2));
+        }
+        else
+        {
+            gps.setAlpha(((float) 1.0));
         }
         if(!a.getShake())
         {
-            shake.setAlpha(((float) 0.3));
+            shake.setAlpha(((float) 0.2));
+        }
+        else
+        {
+            shake.setAlpha(((float) 1.0));
         }
         if(!a.getSpeak())
         {
-            speak.setAlpha(((float) 0.3));
+            speak.setAlpha(((float) 0.2));
+        }
+        else
+        {
+            speak.setAlpha(((float) 1.0));
         }
 
 

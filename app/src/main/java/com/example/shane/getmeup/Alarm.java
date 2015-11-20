@@ -2,9 +2,9 @@ package com.example.shane.getmeup;
 
 public class Alarm {
     private String name, days, time;
-    private Boolean shake, walk, puzzle, speak;
+    private Boolean shake, walk, puzzle, speak, on;
 
-    public Alarm(String n, String d, String t, Boolean s, Boolean w, Boolean p, Boolean sp)
+    public Alarm(String n, String d, String t, Boolean s, Boolean w, Boolean p, Boolean sp, Boolean o)
     {
         setName(n);
         setDays(d);
@@ -13,6 +13,7 @@ public class Alarm {
         setWalk(w);
         setPuzzle(p);
         setSpeak(sp);
+        setOn(o);
     }
     public String getName() {
         return name;
@@ -56,5 +57,7 @@ public class Alarm {
     public void setSpeak(Boolean sp) {
         speak = sp;
     }
+    public void setOn(Boolean o) { on = o; }
+    public Boolean getOn() { return on; }
 
 }

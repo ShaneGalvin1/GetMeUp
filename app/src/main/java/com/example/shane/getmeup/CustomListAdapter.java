@@ -20,7 +20,8 @@ public class CustomListAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
     private List<Alarm> alarmItems;
-
+    private ImageButton alarmOn, alarmOff;
+    private Alarm a;
 
     public CustomListAdapter(Activity activity, List<Alarm> alarmItems) {
         this.activity = activity;
@@ -58,11 +59,14 @@ public class CustomListAdapter extends BaseAdapter {
         ImageView gps = (ImageView) convertView.findViewById(R.id.gpsIcon);
         ImageView speak = (ImageView) convertView.findViewById(R.id.speakIcon);
         ImageView shake = (ImageView) convertView.findViewById(R.id.shakeIcon);
-        ImageButton alarmToggle = (ImageButton) convertView.findViewById(R.id.alarmButton);
-
+        ImageView puzzle = (ImageView) convertView.findViewById(R.id.puzzleIcon);
+        alarmOn = (ImageButton) convertView.findViewById(R.id.alarmButton);
+        alarmOn.setOnClickListener(alarmOnListener);
+        alarmOff = (ImageButton) convertView.findViewById(R.id.alarmButton2);
+        alarmOff.setOnClickListener(alarmOffListener);
 
         // getting alarm data for the row
-        Alarm a = alarmItems.get(position);
+        a = alarmItems.get(position);
 
         // name
         name.setText(a.getName());
@@ -72,6 +76,12 @@ public class CustomListAdapter extends BaseAdapter {
 
         // days
         days.setText(a.getDays());
+
+        if(!a.getOn())
+        {
+            alarmOn.setVisibility(View.GONE);
+            alarmOff.setVisibility(View.VISIBLE);
+        }
 
         if(!a.getWalk())
         {
@@ -97,8 +107,33 @@ public class CustomListAdapter extends BaseAdapter {
         {
             speak.setAlpha(((float) 1.0));
         }
-
-
+        if(!a.getPuzzle())
+        {
+            puzzle.setAlpha(((float) 0.2));
+        }
+        else
+        {
+            puzzle.setAlpha(((float) 1.0));
+        }
         return convertView;
     }
+
+    // Must be implemented in the Activity instead **
+    View.OnClickListener alarmOnListener = new View.OnClickListener() {
+
+        public void onClick(View v) {
+            alarmOn.setVisibility(View.GONE);
+            alarmOff.setVisibility(View.VISIBLE);
+            a.setOn(false);
+        }
+    };
+
+    View.OnClickListener alarmOffListener = new View.OnClickListener() {
+
+        public void onClick(View v) {
+            alarmOff.setVisibility(View.GONE);
+            alarmOn.setVisibility(View.VISIBLE);
+            a.setOn(true);
+        }
+    };
 }

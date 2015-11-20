@@ -38,38 +38,57 @@
             android:layout_toEndOf="@+id/days" />
 
         <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/alarmButton"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:id="@+id/alarmButton"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/alarm_on"/>
+
+        <ImageButton
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:id="@+id/alarmButton2"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/alarm_on"/>
+            android:visibility="gone"
+            android:background="@drawable/alarm_off"/>
+
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:id="@+id/gpsIcon"
             android:layout_toStartOf="@+id/speakIcon"
             android:layout_marginTop="25dp"
-            android:background="@drawable/gps"/>
+            android:background="@drawable/walk"/>
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:id="@+id/speakIcon"
             android:layout_marginTop="25dp"
-
+            android:layout_marginRight="2dp"
             android:layout_toStartOf="@+id/shakeIcon"
             android:background="@drawable/mic"/>
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:id="@+id/shakeIcon"
             android:layout_marginTop="25dp"
-            android:layout_marginRight="50dp"
-            android:layout_toStartOf="@+id/alarmButton"
+            android:layout_marginEnd="3dp"
+            android:layout_toStartOf="@+id/puzzleIcon"
             android:background="@drawable/shake"/>
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/puzzleIcon"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="80dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/puzzle"/>
     </RelativeLayout>
 
 </LinearLayout>

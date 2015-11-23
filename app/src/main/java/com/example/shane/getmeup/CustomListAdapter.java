@@ -2,13 +2,15 @@ package com.example.shane.getmeup;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Movie;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -22,6 +24,7 @@ public class CustomListAdapter extends BaseAdapter {
     private List<Alarm> alarmItems;
     private ImageButton alarmOn, alarmOff;
     private Alarm a;
+    private TextView time;
 
     public CustomListAdapter(Activity activity, List<Alarm> alarmItems) {
         this.activity = activity;
@@ -44,26 +47,65 @@ public class CustomListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
 
         if (inflater == null)
             inflater = (LayoutInflater) activity
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null)
-            convertView = inflater.inflate(R.layout.row_alarm, null);
+            convertView = inflater.inflate(R.layout.row_alarm, parent, false);
 
 
-        TextView time = (TextView) convertView.findViewById(R.id.time);
+        time = (TextView) convertView.findViewById(R.id.time);
         TextView name = (TextView) convertView.findViewById(R.id.name);
         TextView days = (TextView) convertView.findViewById(R.id.days);
         ImageView gps = (ImageView) convertView.findViewById(R.id.gpsIcon);
         ImageView speak = (ImageView) convertView.findViewById(R.id.speakIcon);
         ImageView shake = (ImageView) convertView.findViewById(R.id.shakeIcon);
         ImageView puzzle = (ImageView) convertView.findViewById(R.id.puzzleIcon);
+
         alarmOn = (ImageButton) convertView.findViewById(R.id.alarmButton);
-        alarmOn.setOnClickListener(alarmOnListener);
+        alarmOn.setFocusable(false);
+        alarmOn.setFocusableInTouchMode(false);
+        alarmOn.setTag(position);
         alarmOff = (ImageButton) convertView.findViewById(R.id.alarmButton2);
-        alarmOff.setOnClickListener(alarmOffListener);
+        alarmOff.setFocusable(false);
+        alarmOff.setFocusableInTouchMode(false);
+        alarmOff.setTag(position);
+        alarmOn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((ListView) parent).performItemClick(v, position, 0); // Let the event be handled in onItemClick()
+            }
+        });
+        alarmOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((ListView) parent).performItemClick(v, position, 0); // Let the event be handled in onItemClick()
+            }
+        });
+        /*
+        alarmOn.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                alarmOff.setVisibility(View.VISIBLE);
+                alarmOn.setVisibility(View.GONE);
+                a.setOn(false);
+            }
+        });
+
+
+        alarmOff.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                alarmOff.setVisibility(View.GONE);
+                alarmOn.setVisibility(View.VISIBLE);
+                a.setOn(true);
+            }
+        });
+        */
+
+
 
         // getting alarm data for the row
         a = alarmItems.get(position);
@@ -77,10 +119,16 @@ public class CustomListAdapter extends BaseAdapter {
         // days
         days.setText(a.getDays());
 
+
         if(!a.getOn())
         {
             alarmOn.setVisibility(View.GONE);
             alarmOff.setVisibility(View.VISIBLE);
+        }
+        if(a.getOn())
+        {
+            alarmOn.setVisibility(View.VISIBLE);
+            alarmOff.setVisibility(View.GONE);
         }
 
         if(!a.getWalk())
@@ -118,22 +166,4 @@ public class CustomListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    // Must be implemented in the Activity instead **
-    View.OnClickListener alarmOnListener = new View.OnClickListener() {
-
-        public void onClick(View v) {
-            alarmOn.setVisibility(View.GONE);
-            alarmOff.setVisibility(View.VISIBLE);
-            a.setOn(false);
-        }
-    };
-
-    View.OnClickListener alarmOffListener = new View.OnClickListener() {
-
-        public void onClick(View v) {
-            alarmOff.setVisibility(View.GONE);
-            alarmOn.setVisibility(View.VISIBLE);
-            a.setOn(true);
-        }
-    };
 }

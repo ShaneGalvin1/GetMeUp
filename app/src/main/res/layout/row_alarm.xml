@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Small Text"
+            android:focusable="false"
             android:id="@+id/time" />
 
         <TextView
@@ -25,6 +26,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/days"
+            android:focusable="false"
             android:layout_alignBottom="@+id/gpsIcon"
             android:layout_alignStart="@+id/time" />
 
@@ -32,23 +34,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:focusable="false"
             android:text="Small Text"
             android:id="@+id/name"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/days" />
+            android:layout_toStartOf="@+id/gpsIcon" />
 
         <ImageButton
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:id="@+id/alarmButton"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/alarm_on"/>
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:focusable="false"
+            android:clickable="true"
+            android:id="@+id/alarmButton"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/alarm_on"/>
 
         <ImageButton
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:id="@+id/alarmButton2"
+            android:focusable="false"
+            android:clickable="true"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:visibility="gone"
@@ -61,6 +68,7 @@
             android:id="@+id/gpsIcon"
             android:layout_toStartOf="@+id/speakIcon"
             android:layout_marginTop="25dp"
+            android:focusable="false"
             android:background="@drawable/walk"/>
 
         <ImageView
@@ -69,6 +77,7 @@
             android:id="@+id/speakIcon"
             android:layout_marginTop="25dp"
             android:layout_marginRight="2dp"
+            android:focusable="false"
             android:layout_toStartOf="@+id/shakeIcon"
             android:background="@drawable/mic"/>
 
@@ -78,6 +87,7 @@
             android:id="@+id/shakeIcon"
             android:layout_marginTop="25dp"
             android:layout_marginEnd="3dp"
+            android:focusable="false"
             android:layout_toStartOf="@+id/puzzleIcon"
             android:background="@drawable/shake"/>
 
@@ -87,6 +97,7 @@
             android:id="@+id/puzzleIcon"
             android:layout_marginTop="25dp"
             android:layout_marginEnd="80dp"
+            android:focusable="false"
             android:layout_alignParentEnd="true"
             android:background="@drawable/puzzle"/>
     </RelativeLayout>

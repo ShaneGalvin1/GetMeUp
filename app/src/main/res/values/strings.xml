@@ -8,4 +8,17 @@
     <string name="title_activity_play_setup">PlaySetupActivity</string>
     <string name="title_activity_edit_alarm">EditAlarmActivity</string>
     <string name="title_activity_active_alarm">ActiveAlarmActivity</string>
+    <string name="title_activity_set_alarm">SetAlarmActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_shake_alarm">ShakeAlarmActivity</string>
+    <string name="title_activity_walk_alarm">WalkAlarmActivity</string>
+    <string name="title_activity_talk_alarm">TalkAlarmActivity</string>
+    <string-array name="alarmType_spinner_array">
+        <item>Choose Alarm type</item>
+        <item>Shake</item>
+        <item>Walk</item>
+        <item>Talk</item>
+    </string-array>
+    <string name="title_activity_put_off_alarm">PutOffAlarmActivity</string>
 </resources>

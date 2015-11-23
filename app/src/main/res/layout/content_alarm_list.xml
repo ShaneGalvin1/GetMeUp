@@ -22,7 +22,8 @@
         android:layout_height="40dp"
         android:id="@+id/addAlarm"
         android:layout_alignParentRight="true"
-        android:background="@drawable/add_alarm" />
+        android:background="@drawable/add_alarm"
+        android:onClick="setAlarmAttributes"/>
 
     <LinearLayout
         android:orientation="vertical"

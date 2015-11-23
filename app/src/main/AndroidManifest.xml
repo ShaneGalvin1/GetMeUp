@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.shane.getmeup" >
 
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,6 +29,33 @@
             android:name=".ActiveAlarmActivity"
             android:label="@string/title_activity_active_alarm"
             android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".SetAlarmActivity"
+            android:label="@string/title_activity_set_alarm" >
+        </activity>
+        <activity
+            android:name=".ShakeAlarmActivity"
+            android:label="@string/title_activity_shake_alarm" >
+        </activity>
+        <activity
+            android:name=".WalkAlarmActivity"
+            android:label="@string/title_activity_walk_alarm" >
+        </activity>
+        <activity
+            android:name=".TalkAlarmActivity"
+            android:label="@string/title_activity_talk_alarm" >
+        </activity>
+
+        <receiver
+            android:name=".AlarmReceiver"
+            android:enabled="true"
+            android:exported="true" >
+        </receiver>
+
+        <activity
+            android:name=".PutOffAlarmActivity"
+            android:label="@string/title_activity_put_off_alarm" >
         </activity>
     </application>
 

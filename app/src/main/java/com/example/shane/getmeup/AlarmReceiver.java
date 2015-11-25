@@ -30,16 +30,16 @@ public class AlarmReceiver extends BroadcastReceiver {
             NotificationManager manager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
 
-            MediaPlayer player;
-            player = MediaPlayer.create(context, notification);
-            player.setLooping(true);
-            player.start();
+
+            mediaPlayer = MediaPlayer.create(context, notification);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
             int value = intent.getExtras().getInt("NoOfShakes");
 
             Intent i = new Intent();
             i.putExtra("TYPE", alarmType);
             i.putExtra("NoOfShakes", value);
-            i.setClassName("com.example.shane.getmeup", "com.example.shane.getmeup.PutOffAlarmActivity");
+            i.setClassName("com.example.shane.getmeup", "com.example.shane.getmeup.PutShakeAlarmOff");
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
         }
@@ -60,6 +60,21 @@ public class AlarmReceiver extends BroadcastReceiver {
             Intent i = new Intent();
             i.putExtra("TYPE", alarmType);
             i.setClassName("com.example.shane.getmeup", "com.example.shane.getmeup.PutOffAlarmActivity");
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(i);
+        }
+        else
+        {
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+            mediaPlayer = MediaPlayer.create(context, notification);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+            int value = intent.getExtras().getInt("NoOfSteps");
+
+            Intent i = new Intent();
+            i.putExtra("TYPE", alarmType);
+            i.putExtra("NoOfSteps", value);
+            i.setClassName("com.example.shane.getmeup", "com.example.shane.getmeup.PutWalkAlarmOff");
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
         }

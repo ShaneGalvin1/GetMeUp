@@ -1,6 +1,8 @@
 package com.example.shane.getmeup;
 
+import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -21,7 +23,7 @@ public class ShakeAlarmActivity extends AppCompatActivity {
 
 
     SeekBar shakeSeekBar;
-    int noOfShakes = 10;
+    int noOfShakes = 50;
     long alarmTimeMilliseconds = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,13 +77,12 @@ public class ShakeAlarmActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // TODO Auto-generated method stub
                 if (progress == 0) {
-                    noOfShakes = 10;
+                    noOfShakes = 50;
                 } else if (progress > 0 && progress < 40) {
-                    noOfShakes = progress + 10;
+                    noOfShakes = progress + 50;
                 } else {
-                    noOfShakes = progress + 1;
+                    noOfShakes = 100;
                 }
-                noOfShakes = 10;
                 Toast.makeText(getApplicationContext(), String.valueOf(noOfShakes), Toast.LENGTH_LONG).show();
 
             }
@@ -89,14 +90,13 @@ public class ShakeAlarmActivity extends AppCompatActivity {
     }
 
 
-    public void setAlarm(View view)
+    public void goToSetAlarm(View view)
     {
-        Toast.makeText(view.getContext(), String.valueOf(alarmTimeMilliseconds), Toast.LENGTH_SHORT).show();
-        Intent AlarmIntent = new Intent(ShakeAlarmActivity.this, AlarmReceiver.class);
-        AlarmIntent.putExtra("NoOfShakes", noOfShakes);
-        AlarmIntent.putExtra("TYPE", "SHAKE");
-        AlarmManager AlmMgr = (AlarmManager)getSystemService(ALARM_SERVICE);
-        PendingIntent Sender = PendingIntent.getBroadcast(this, 0, AlarmIntent, 0);
-        AlmMgr.set(AlarmManager.RTC_WAKEUP,  alarmTimeMilliseconds, Sender);
+
+            setResult(Activity.RESULT_OK,
+                new Intent().putExtra("NoOfShakes", noOfShakes));
+
+            finish();
+
     }
 }

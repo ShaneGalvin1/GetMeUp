@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="80dp"
         android:textSize="20dp"
-        android:text="Choose the duration to shake:"
+        android:text="Choose the number of shakes:"
         />
 
     <RelativeLayout
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/shakeSeekBar"
 
-            android:text="10 shakes" >
+            android:text="50 shakes" >
         </TextView>
 
         <TextView
@@ -39,14 +39,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/shakeSeekBar"
-            android:text="50 shakes" />
+            android:text="100 shakes" />
     </RelativeLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="Set Alarm" android:onClick="setAlarm"/>
+        android:text="Go Back" android:onClick="goToSetAlarm"/>
 
 </LinearLayout>
 

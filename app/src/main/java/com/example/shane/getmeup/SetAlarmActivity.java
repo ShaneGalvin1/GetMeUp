@@ -21,8 +21,16 @@ public class SetAlarmActivity extends AppCompatActivity {
     Spinner spinner;
     TimePicker timepicker;
     long millisecondsAlarmTime;
+    String alarmTimeStr;
+    Intent AlarmIntent;
+    String alarmType;
+    Alarm alarm;
+    boolean isShake = false;
+    boolean isWalk = false;
+    boolean isTalk = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_alarm);
         setUpTimePicker();
@@ -63,6 +71,7 @@ public class SetAlarmActivity extends AppCompatActivity {
                 cal.set(Calendar.MINUTE, minute);
                 int offset = cal.getTimeZone().getOffset(cal.getTimeInMillis());
                 millisecondsAlarmTime = cal.getTimeInMillis() + offset;
+                alarmTimeStr = String.valueOf(hourOfDay) + " : " + String.valueOf(minute);
             }
         });
 
@@ -85,17 +94,23 @@ public class SetAlarmActivity extends AppCompatActivity {
                 if (parent.getItemAtPosition(position).equals("Choose Alarm type")) {
                     //do nothing.
                 } else if (parent.getItemAtPosition(position).equals("Shake")) {
+                    alarmType = "SHAKE";
+                    isShake = true;
                     Intent AlarmTypeIntent = new Intent(view.getContext(), ShakeAlarmActivity.class);
                     AlarmTypeIntent.putExtra("AlarmTime", millisecondsAlarmTime);
-                    startActivity(AlarmTypeIntent);
+                    startActivityForResult(AlarmTypeIntent, 0);
                 } else if (parent.getItemAtPosition(position).equals("Walk")) {
+                    alarmType = "WALK";
+                    isWalk = true;
                     Intent AlarmTypeIntent = new Intent(view.getContext(), WalkAlarmActivity.class);
                     AlarmTypeIntent.putExtra("AlarmTime", millisecondsAlarmTime);
-                    startActivity(AlarmTypeIntent);
+                    startActivityForResult(AlarmTypeIntent, 0);
                 } else {
+                    alarmType = "TALK";
+                    isTalk = true;
                     Intent AlarmTypeIntent = new Intent(view.getContext(), TalkAlarmActivity.class);
                     AlarmTypeIntent.putExtra("AlarmTime", millisecondsAlarmTime);
-                    startActivity(AlarmTypeIntent);
+                    startActivityForResult(AlarmTypeIntent, 0);
                 }
             }
 
@@ -104,6 +119,42 @@ public class SetAlarmActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        AlarmIntent = new Intent(SetAlarmActivity.this, AlarmReceiver.class);
+       // String alarmType = data.getExtras().getString("TYPE");
+        if(alarmType.equals("SHAKE"))
+        {
+            int noOfShakes = data.getIntExtra("NoOfShakes", 0);
+            AlarmIntent.putExtra("NoOfShakes", noOfShakes);
+            AlarmIntent.putExtra("TYPE", "SHAKE");
+        }
+        if(alarmType.equals("WALK"))
+        {
+            int noOfSteps = data.getIntExtra("NoOfSteps", 0);
+            AlarmIntent.putExtra("NoOfSteps", noOfSteps);
+            AlarmIntent.putExtra("TYPE", "WALK");
+        }
+        else
+        {
+            String recordFileName = data.getStringExtra("FileName");
+            AlarmIntent.putExtra("FileName",recordFileName);
+            AlarmIntent.putExtra("TYPE", "TALK");
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void setUpAlarm(View view)
+    {
+            AlarmManager AlmMgr = (AlarmManager) getSystemService(ALARM_SERVICE);
+            PendingIntent Sender = PendingIntent.getBroadcast(this, 0, AlarmIntent, 0);
+            AlmMgr.set(AlarmManager.RTC_WAKEUP, millisecondsAlarmTime, Sender);
+            //Populate the alarm model.
+
+            alarm = new Alarm("My Alarm", "Thursday", alarmTimeStr,isShake,isWalk,false,isTalk, true);
+            AlarmListActivity.alarmList.add(alarm);
+            finish();
     }
 }

@@ -57,6 +57,14 @@
             android:name=".PutOffAlarmActivity"
             android:label="@string/title_activity_put_off_alarm" >
         </activity>
+        <activity
+            android:name=".PutShakeAlarmOff"
+            android:label="@string/title_activity_put_shake_alarm_off" >
+        </activity>
+        <activity
+            android:name=".PutWalkAlarmOff"
+            android:label="@string/title_activity_put_walk_alarm_off" >
+        </activity>
     </application>
 
 </manifest>

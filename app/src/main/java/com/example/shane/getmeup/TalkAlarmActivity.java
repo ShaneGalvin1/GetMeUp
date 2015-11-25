@@ -1,5 +1,6 @@
 package com.example.shane.getmeup;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -65,7 +66,6 @@ public class TalkAlarmActivity extends AppCompatActivity {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
         Date now = new Date();
         fileName = getFilesDir() + "/" + formatter.format(now) + "audio.m4a";
-       // fileName = getFilesDir() + datetime + "/audio.m4a";
         recorder.setOutputFile(fileName);
         try {
             recorder.prepare();
@@ -87,12 +87,8 @@ public class TalkAlarmActivity extends AppCompatActivity {
 
     public void setTalkAlarm(View view)
     {
-        Intent AlarmIntent = new Intent(TalkAlarmActivity.this, AlarmReceiver.class);
-        AlarmIntent.putExtra("FileName",fileName);
-        AlarmIntent.putExtra("TYPE", "TALK");
-        AlarmManager AlmMgr = (AlarmManager)getSystemService(ALARM_SERVICE);
-        PendingIntent Sender = PendingIntent.getBroadcast(this, 0, AlarmIntent, 0);
-        AlmMgr.set(AlarmManager.RTC_WAKEUP,  alarmTimeMilliseconds, Sender);
-
+        setResult(Activity.RESULT_OK,
+                new Intent().putExtra("FileName", fileName));
+        finish();
     }
 }

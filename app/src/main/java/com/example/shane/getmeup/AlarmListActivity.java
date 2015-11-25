@@ -23,7 +23,7 @@ import java.util.List;
 
 public class AlarmListActivity extends AppCompatActivity {
 
-    private List<Alarm> alarmList = new ArrayList<Alarm>();
+    public static List<Alarm> alarmList = new ArrayList<Alarm>();
     private ListView listView;
     private CustomListAdapter adapter;
     private TextView title;

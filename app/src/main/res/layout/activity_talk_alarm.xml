@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="Set Alarm" android:onClick="setTalkAlarm"/>
+        android:text="Go Back" android:onClick="setTalkAlarm"/>
 
 </LinearLayout>
 

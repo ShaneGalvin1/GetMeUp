@@ -28,6 +28,7 @@
             android:id="@+id/days"
             android:focusable="false"
             android:layout_alignBottom="@+id/gpsIcon"
+            android:layout_alignLeft="@+id/time"
             android:layout_alignStart="@+id/time" />
 
         <TextView
@@ -38,6 +39,7 @@
             android:text="Small Text"
             android:id="@+id/name"
             android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/gpsIcon"
             android:layout_toStartOf="@+id/gpsIcon" />
 
         <ImageButton
@@ -47,6 +49,7 @@
             android:clickable="true"
             android:id="@+id/alarmButton"
             android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:background="@drawable/alarm_on"/>
 
@@ -57,6 +60,7 @@
             android:focusable="false"
             android:clickable="true"
             android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:visibility="gone"
             android:background="@drawable/alarm_off"/>
@@ -66,6 +70,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:id="@+id/gpsIcon"
+            android:layout_toLeftOf="@+id/speakIcon"
             android:layout_toStartOf="@+id/speakIcon"
             android:layout_marginTop="25dp"
             android:focusable="false"
@@ -78,6 +83,7 @@
             android:layout_marginTop="25dp"
             android:layout_marginRight="2dp"
             android:focusable="false"
+            android:layout_toLeftOf="@+id/shakeIcon"
             android:layout_toStartOf="@+id/shakeIcon"
             android:background="@drawable/mic"/>
 
@@ -86,8 +92,10 @@
             android:layout_height="25dp"
             android:id="@+id/shakeIcon"
             android:layout_marginTop="25dp"
+            android:layout_marginRight="3dp"
             android:layout_marginEnd="3dp"
             android:focusable="false"
+            android:layout_toLeftOf="@+id/puzzleIcon"
             android:layout_toStartOf="@+id/puzzleIcon"
             android:background="@drawable/shake"/>
 
@@ -96,8 +104,10 @@
             android:layout_height="25dp"
             android:id="@+id/puzzleIcon"
             android:layout_marginTop="25dp"
+            android:layout_marginRight="80dp"
             android:layout_marginEnd="80dp"
             android:focusable="false"
+            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:background="@drawable/puzzle"/>
     </RelativeLayout>

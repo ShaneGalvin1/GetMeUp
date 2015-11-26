@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">GetMeUp</string>
     <string name="action_settings">Settings</string>
+    <string name="action_calendar">Check Calendar</string>
     <string name="title_activity_choose_alarm">ChooseAlarmActivity</string>
     <string name="title_activity_walk_setup">WalkSetupActivity</string>
     <string name="title_activity_talk_setup">TalkSetupActivity</string>
@@ -8,4 +9,10 @@
     <string name="title_activity_play_setup">PlaySetupActivity</string>
     <string name="title_activity_edit_alarm">EditAlarmActivity</string>
     <string name="title_activity_active_alarm">ActiveAlarmActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_list">Alarms</string>
+    <string name="create_alarm">Create Alarm</string>
+    <string name="created">Alarm has been created.</string>
+    <string name="hours">Hours</string>
+    <string name="mins">Minutes</string>
 </resources>

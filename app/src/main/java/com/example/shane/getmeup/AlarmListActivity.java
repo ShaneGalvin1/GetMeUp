@@ -1,33 +1,43 @@
 package com.example.shane.getmeup;
 
+import android.Manifest;
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.text.Format;
 import java.util.ArrayList;
 import java.util.List;
 
+@TargetApi(23)
 public class AlarmListActivity extends AppCompatActivity {
+
+    private Cursor mCursor = null;
+    private static final String[] COLS = new String[]{CalendarContract.Events.TITLE, CalendarContract.Events.DTSTART};
 
     private List<Alarm> alarmList = new ArrayList<Alarm>();
     private ListView listView;
     private CustomListAdapter adapter;
     private TextView title;
-    private ImageButton add, alarmOn, alarmOff;
-    private int selectedRow;
+    private ImageButton add;
     private Alarm temp;
 
     @Override
@@ -37,15 +47,18 @@ public class AlarmListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         title = (TextView) findViewById(R.id.title);
-        title.setText("Alarms");
         add = (ImageButton) findViewById(R.id.addAlarm);
-        //alarmOn = (ImageButton) findViewById(R.id.alarmButton);
-        //alarmOn = (ImageButton) findViewById(R.id.alarmButton);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
 
-        Alarm b = new Alarm("Get Up", "Weekdays", "07:00", true, false, true, false, false);
-        Alarm c = new Alarm("Work", "Weekdays", "18:00", false, true, false, true, true);
-        Alarm d = new Alarm("Snooze", "Sunday", "12:00", false, false, true, true, false);
+        });
+
+        Alarm b = new Alarm("Get Up", "Mon Tue", "07:00", true, false, true, false, false);
+        Alarm c = new Alarm("Work", "Wed Thu Fri Sat", "18:00", false, true, false, false, true);
+        Alarm d = new Alarm("Snooze", "Sun", "12:00", false, false, true, true, false);
 
 
         alarmList.add(b);
@@ -103,9 +116,13 @@ public class AlarmListActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        else if (id == R.id.action_calendar)
+        {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }
-
 
 }

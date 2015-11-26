@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Large Text"
+            android:layout_marginTop="20dp"
+            android:id="@+id/event_title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Large Text"
+            android:id="@+id/event_time"
+            android:layout_alignBottom="@+id/hours"
+            android:layout_alignParentStart="true" />
+
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:id="@+id/hours"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="100dp"
+            />
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:id="@+id/mins"
+            android:layout_height="72dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/created"
+            android:id="@+id/created"
+            android:layout_below="@+id/event_time"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
+
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_alarm"
+            android:id="@+id/create"
+            android:layout_below="@+id/event_time"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/hours"
+            android:id="@+id/hrs"
+            android:layout_marginStart="14dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/hours" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/mins"
+            android:id="@+id/minutes"
+            android:layout_marginStart="6dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/mins" />
+
+
+    </RelativeLayout>
+</LinearLayout>

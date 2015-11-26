@@ -62,7 +62,7 @@ public class CustomListAdapter extends BaseAdapter {
         ImageView gps = (ImageView) convertView.findViewById(R.id.gpsIcon);
         ImageView speak = (ImageView) convertView.findViewById(R.id.speakIcon);
         ImageView shake = (ImageView) convertView.findViewById(R.id.shakeIcon);
-        ImageView puzzle = (ImageView) convertView.findViewById(R.id.puzzleIcon);
+
 
         alarmOn = (ImageButton) convertView.findViewById(R.id.alarmButton);
         alarmOn.setFocusable(false);
@@ -84,28 +84,6 @@ public class CustomListAdapter extends BaseAdapter {
                 ((ListView) parent).performItemClick(v, position, 0); // Let the event be handled in onItemClick()
             }
         });
-        /*
-        alarmOn.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                alarmOff.setVisibility(View.VISIBLE);
-                alarmOn.setVisibility(View.GONE);
-                a.setOn(false);
-            }
-        });
-
-
-        alarmOff.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                alarmOff.setVisibility(View.GONE);
-                alarmOn.setVisibility(View.VISIBLE);
-                a.setOn(true);
-            }
-        });
-        */
-
-
 
         // getting alarm data for the row
         a = alarmItems.get(position);
@@ -119,7 +97,7 @@ public class CustomListAdapter extends BaseAdapter {
         // days
         days.setText(a.getDays());
 
-
+        //Set which imagebutton is shown
         if(!a.getOn())
         {
             alarmOn.setVisibility(View.GONE);
@@ -155,14 +133,7 @@ public class CustomListAdapter extends BaseAdapter {
         {
             speak.setAlpha(((float) 1.0));
         }
-        if(!a.getPuzzle())
-        {
-            puzzle.setAlpha(((float) 0.2));
-        }
-        else
-        {
-            puzzle.setAlpha(((float) 1.0));
-        }
+
         return convertView;
     }
 

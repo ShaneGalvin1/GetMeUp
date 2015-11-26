@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Medium Text"
             android:id="@+id/days"
             android:focusable="false"
@@ -37,8 +37,9 @@
             android:focusable="false"
             android:text="Small Text"
             android:id="@+id/name"
+            android:layout_marginLeft="40dp"
             android:layout_alignParentTop="true"
-            android:layout_toStartOf="@+id/gpsIcon" />
+            android:layout_toEndOf="@+id/time" />
 
         <ImageButton
             android:layout_width="45dp"
@@ -86,20 +87,12 @@
             android:layout_height="25dp"
             android:id="@+id/shakeIcon"
             android:layout_marginTop="25dp"
-            android:layout_marginEnd="3dp"
-            android:focusable="false"
-            android:layout_toStartOf="@+id/puzzleIcon"
-            android:background="@drawable/shake"/>
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:id="@+id/puzzleIcon"
-            android:layout_marginTop="25dp"
             android:layout_marginEnd="80dp"
             android:focusable="false"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/puzzle"/>
+            android:background="@drawable/shake"/>
+
+
     </RelativeLayout>
 
 </LinearLayout>

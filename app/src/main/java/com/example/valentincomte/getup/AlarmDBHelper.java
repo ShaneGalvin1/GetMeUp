@@ -14,6 +14,19 @@ import java.util.List;
 
 /**
  * Created by valentincomte on 24/11/2015.
+ *
+ * This is our base class for the Database management.
+ * It features all the needed functions to manage our database:
+ * -populateModel
+ * -populateContent
+ * -createAlarm
+ * -deleteAlarm
+ * -getAlarm
+ * -getAlarms
+ * -updateAlarm
+ *
+ * We inspired ourselves and used code from the tutorial made by Steven Trigg
+ * on data persistence and sqllite
  */
 public class AlarmDBHelper extends SQLiteOpenHelper {
 
@@ -55,6 +68,8 @@ public class AlarmDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    // Method used to create an AlarmModel from a row in the SQL database. The method returns the
+    // populated model
     private AlarmModel populateModel(Cursor c) {
         AlarmModel model = new AlarmModel();
         model.id = c.getLong(c.getColumnIndex(Alarm._ID));
@@ -79,6 +94,7 @@ public class AlarmDBHelper extends SQLiteOpenHelper {
         return model;
     }
 
+    // This method is used to convert and AlarmModel into values that will be used to update the database
     private ContentValues populateContent(AlarmModel model) {
         ContentValues values = new ContentValues();
         values.put(Alarm.COLUMN_NAME_ALARM_NAME, model.name);
@@ -103,16 +119,19 @@ public class AlarmDBHelper extends SQLiteOpenHelper {
         return values;
     }
 
+    // This method will create an entry in the database for the given AlarmModel
     public long createAlarm(AlarmModel model) {
         ContentValues values = populateContent(model);
         return getWritableDatabase().insert(Alarm.TABLE_NAME, null, values);
     }
 
+    // This method will update the given AlarmModel in the database if it already exists
     public long updateAlarm(AlarmModel model) {
         ContentValues values = populateContent(model);
         return getWritableDatabase().update(Alarm.TABLE_NAME, values, Alarm._ID + " = ?", new String[] { String.valueOf(model.id) });
     }
 
+    // This method is used to get an AlarmObject from the database given an id.
     public AlarmModel getAlarm(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -127,6 +146,7 @@ public class AlarmDBHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    // This method is used to get all the alarms in the database as a list of AlarmModel
     public List<AlarmModel> getAlarms() {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -147,6 +167,7 @@ public class AlarmDBHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    // This method is used to delete and alarm from the databse given an id
     public int deleteAlarm(long id) {
         return getWritableDatabase().delete(Alarm.TABLE_NAME, Alarm._ID + " = ?", new String[] { String.valueOf(id) });
     }

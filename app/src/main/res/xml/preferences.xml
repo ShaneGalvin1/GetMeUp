@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <CheckBoxPreference
+        android:title="Activate airplane mode"
+        android:key="pref_airplane_mode"
+        android:defaultValue="false"
+        android:summary="Choose if you want the airplane mode to be toggled 7h before each alarm"/>
+
+</PreferenceScreen>

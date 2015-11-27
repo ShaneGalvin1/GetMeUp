@@ -1,6 +1,7 @@
 package com.example.valentincomte.getup;
 
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,6 +24,8 @@ public class AlarmListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm_list);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
         Button addButton = (Button) this.findViewById(R.id.buttonAddAlarm);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +90,8 @@ public class AlarmListActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
             return true;
         }
 

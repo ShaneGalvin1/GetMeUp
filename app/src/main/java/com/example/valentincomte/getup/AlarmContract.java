@@ -4,6 +4,10 @@ import android.provider.BaseColumns;
 
 /**
  * Created by valentincomte on 24/11/2015.
+ * This abstract class is used by the AlarmDBHelper to store properly and in a clean way the names
+ * for each of the column in the database
+ *
+ * We used this model following a tutorial by steven trigg about data persistence and sqllite
  */
 public final class AlarmContract {
 

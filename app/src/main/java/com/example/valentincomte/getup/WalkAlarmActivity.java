@@ -80,7 +80,7 @@ public class WalkAlarmActivity extends AppCompatActivity {
     public void setAlarm(View view)
     {
         setResult(Activity.RESULT_OK,
-                new Intent().putExtra("NoOfSteps", noOfSteps));
+                new Intent().putExtra("NoOfSteps", noOfSteps).putExtra("TYPE", "WALK"));
 
         finish();
     }

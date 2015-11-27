@@ -88,7 +88,7 @@ public class TalkAlarmActivity extends AppCompatActivity {
     public void setTalkAlarm(View view)
     {
         setResult(Activity.RESULT_OK,
-                new Intent().putExtra("FileName", fileName));
+                new Intent().putExtra("FileName", fileName).putExtra("TYPE", "TALK"));
         finish();
     }
 }

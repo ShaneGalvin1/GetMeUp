@@ -5,7 +5,9 @@ import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.RingtoneManager;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,6 +28,19 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+
+/**
+ * This class is the Activity for our create/update alarm screen
+ * It features a timepicker, a spinner, an edittext, a checkbox, an tonepicker, a toast and some textviews
+ * Its purpose it to let the user decide the content of its alarm.
+ * This activity leads to 3 other activities: ShakeAlarmActivity, TalkAlarmActivity, WalkAlarmActivity
+ * When everything is set for the user, he can either choose:
+ *  - to cancel what he did by pressing the return button
+ *  - to delete the alarm
+ *  - to validate its choice
+ * When a user validate an alarm it is created in the database and an alarm for the set time is created
+ * via the alarmManager.
+ */
 
 public class AlarmDetailsActivity extends AppCompatActivity {
 
@@ -94,8 +109,8 @@ public class AlarmDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final ArrayList mSelectedItems = new ArrayList();
                 boolean[] dayList = alarmDetails.getDays();
-                for(int i=0; i<7;i++){
-                    if(dayList[i] == true){
+                for (int i = 0; i < 7; i++) {
+                    if (dayList[i] == true) {
                         mSelectedItems.add(i);
                     }
                 }
@@ -186,10 +201,7 @@ public class AlarmDetailsActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        AlarmIntent = new Intent(AlarmDetailsActivity.this, AlarmReceiver.class);
         //TODO: replace with default alarm
-        AlarmIntent.putExtra("TYPE", "SHAKE");
-        AlarmIntent.putExtra("NoOfShakes", 10);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case 1: {
@@ -199,11 +211,9 @@ public class AlarmDetailsActivity extends AppCompatActivity {
                     txtToneSelection.setText(RingtoneManager.getRingtone(this, alarmDetails.alarmTone).getTitle(this));
                     break;
                 }
-                default: {
-                    break;
-                }
                 case 2: {
-                    // String alarmType = data.getExtras().getString("TYPE");
+                    AlarmIntent = new Intent(AlarmDetailsActivity.this, AlarmReceiver.class);
+                    String alarmType = data.getStringExtra("TYPE");
                     if(alarmType.equals("SHAKE"))
                     {
                         int noOfShakes = data.getIntExtra("NoOfShakes", 0);
@@ -214,7 +224,7 @@ public class AlarmDetailsActivity extends AppCompatActivity {
                         AlarmIntent.putExtra("NoOfShakes", noOfShakes);
                         AlarmIntent.putExtra("TYPE", "SHAKE");
                     }
-                    if(alarmType.equals("WALK"))
+                    else if(alarmType.equals("WALK"))
                     {
                         int noOfSteps = data.getIntExtra("NoOfSteps", 0);
                         alarmDetails.walk = true;
@@ -235,6 +245,9 @@ public class AlarmDetailsActivity extends AppCompatActivity {
                         AlarmIntent.putExtra("TYPE", "TALK");
                     }
                     super.onActivityResult(requestCode, resultCode, data);
+                }
+                default: {
+                    break;
                 }
             }
         }
@@ -271,10 +284,15 @@ public class AlarmDetailsActivity extends AppCompatActivity {
                 int offset = cal.getTimeZone().getOffset(cal.getTimeInMillis());
                 millisecondsAlarmTime = cal.getTimeInMillis() + offset;
 
-
                 AlarmManager AlmMgr = (AlarmManager) getSystemService(ALARM_SERVICE);
                 PendingIntent Sender = PendingIntent.getBroadcast(this, 0, AlarmIntent, 0);
                 AlmMgr.set(AlarmManager.RTC_WAKEUP, millisecondsAlarmTime, Sender);
+
+                Intent AirplaneIntent = new Intent(AlarmDetailsActivity.this, AlarmReceiver.class);
+                AirplaneIntent.putExtra("TYPE", "AIRPLANE");
+                AlarmManager AlmMgr2 = (AlarmManager) getSystemService(ALARM_SERVICE);
+                PendingIntent planeSender = PendingIntent.getBroadcast(this, 0, AirplaneIntent, 0);
+                AlmMgr2.set(AlarmManager.RTC, millisecondsAlarmTime-25200000, planeSender);
 
                 setResult(RESULT_OK);
                 finish();

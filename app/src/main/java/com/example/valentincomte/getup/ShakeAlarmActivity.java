@@ -94,7 +94,7 @@ public class ShakeAlarmActivity extends AppCompatActivity {
     {
 
         setResult(Activity.RESULT_OK,
-                new Intent().putExtra("NoOfShakes", noOfShakes));
+                new Intent().putExtra("NoOfShakes", noOfShakes).putExtra("TYPE", "SHAKE"));
 
         finish();
 

@@ -1,26 +1,54 @@
 <resources>
-    <string name="app_name">GetMeUp</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_choose_alarm">ChooseAlarmActivity</string>
-    <string name="title_activity_walk_setup">WalkSetupActivity</string>
-    <string name="title_activity_talk_setup">TalkSetupActivity</string>
-    <string name="title_activity_shake_setup">ShakeSetupActivity</string>
-    <string name="title_activity_play_setup">PlaySetupActivity</string>
-    <string name="title_activity_edit_alarm">EditAlarmActivity</string>
-    <string name="title_activity_active_alarm">ActiveAlarmActivity</string>
-    <string name="title_activity_set_alarm">SetAlarmActivity</string>
+    <string name="app_name">GetUp</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_shake_alarm">Shake Alarm</string>
-    <string name="title_activity_walk_alarm">Walk Alarm</string>
-    <string name="title_activity_talk_alarm">Talk Alarm</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_alarm_details">AlarmDetailsActivity</string>
+    <string name="details_alarm_name">Alarm name</string>
+
+    <string name="details_alarm_tone">Pick a tone</string>
+    <string name="details_alarm_tone_default">No tone</string>
+
+    <string name="details_alarm_time_picker">Time</string>
+    <string name="details_alarm_default_time">07:00</string>
+
+    <string name="details_alarm_days">Frequency</string>
+    <string name="details_alarm_days_default">Days of the week</string>
+
+    <string name="details_alarm_label_vibrate">Vibrations</string>
+
+    <string name="details_alarm_monday">Monday</string>
+    <string name="details_alarm_tuesday">Tuesday</string>
+    <string name="details_alarm_wednesday">Wednesday</string>
+    <string name="details_alarm_thursday">Thursday</string>
+    <string name="details_alarm_friday">Friday</string>
+    <string name="details_alarm_saturday">Saturday</string>
+    <string name="details_alarm_sunday">Sunday</string>
+
+    <string name="dialog_days_title">Frequency</string>
+
+    <string name="title_activity_put_off_alarm">Turn off alarm</string>
+    <string name="titla_activity_put_off_shake_alarm_off">Turn off shake alarm</string>
+    <string name="title_activity_put_walk_alarm_off">Turn off walk alarm</string>
+
+    <string-array name="days_array">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
     <string-array name="alarmType_spinner_array">
         <item>Choose Alarm type</item>
         <item>Shake</item>
         <item>Walk</item>
         <item>Talk</item>
     </string-array>
-    <string name="title_activity_put_off_alarm">Put Alarm Off</string>
-    <string name="title_activity_put_shake_alarm_off">Put Alarm Off</string>
-    <string name="title_activity_put_walk_alarm_off">Put Alarm Off</string>
+
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+
 </resources>

@@ -94,7 +94,7 @@ public class CalendarAdapter extends BaseAdapter{
 
         title.setText(a.getName());
         time.setText(a.getTime() + " - " + a.getDays());
-        hours.setMaxValue(10);
+        hours.setMaxValue(12);
         hours.setMinValue(0);
         hours.setFormatter(new NumberPicker.Formatter() {
             @Override
@@ -110,7 +110,6 @@ public class CalendarAdapter extends BaseAdapter{
                 return String.format("%02d", i);
             }
         });
-
 
         return convertView;
     }

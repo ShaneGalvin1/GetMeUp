@@ -45,6 +45,8 @@ import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends Activity {
     GoogleAccountCredential mCredential;
@@ -62,7 +64,7 @@ public class MainActivity extends Activity {
     private ListView listView;
     private CalendarAdapter adapter;
     private Alarm temp;
-    /**
+    /**onst
      * Create the main activity.
      * @param savedInstanceState previously saved instance data.
      */
@@ -307,11 +309,11 @@ public class MainActivity extends Activity {
                             {
                                 first = start.getValue();
 
-                                firstEvent = event.getSummary() + "@" + start;
+                                firstEvent = event.getSummary() + "=" + start;
                             }
                             if(first > start.getValue())
                             {
-                                firstEvent = event.getSummary() + "@" + start;;
+                                firstEvent = event.getSummary() + "=" + start;;
                             }
                         }
                     }
@@ -347,26 +349,39 @@ public class MainActivity extends Activity {
 
                 //Populate AlarmList for List of events
                 String s = "";
+                String name = "";
+                String dt = "";
                 for(int i = 0; i < output.size(); i++) {
                     s = output.get(i);
                     if(s != null) {
 
                         title.setText("Upcoming Events");
-                        String[] str_array = s.split("@");
+                        Pattern pattern = Pattern.compile("= *");
+                        Matcher matcher = pattern.matcher(s);
+                        if (matcher.find()) {
+                            name = s.substring(0, matcher.start());
+                            dt = s.substring(matcher.end());
+                        }
+                        String[] str_array = s.split("=");
                         if(str_array.length > 0) {
-                            String name = str_array[0];
-                            String dt = str_array[1];
-                            String[] s_array = dt.split("T");
-                            String time = s_array[1];
-                            String day = s_array[0];
-                            time = time.substring(0, time.lastIndexOf(":"));
-
-                            Date d = Date.valueOf(day);
-
+                            pattern = Pattern.compile("T *");
+                            matcher = pattern.matcher(dt);
+                            String time = "";
+                            String day = "";
+                            Date d = new Date(0,0,0);
+                            if (matcher.find()) {
+                                day = dt.substring(0, matcher.start());
+                                time = dt.substring(matcher.end());
+                                time = time.substring(0, 5);
+                                d = Date.valueOf(day);
+                            }
                             SimpleDateFormat sdf = new SimpleDateFormat("EEE");
                             String dayOfTheWeek = sdf.format(d);
                             Alarm temp = new Alarm(name, dayOfTheWeek, time, true, false, false, false, false);
-                            alarmList.add(temp);
+                            if(temp.getTime() != "" && temp .getDays() != "") {
+                                alarmList.add(temp);
+                            }
+
                         }
 
                     }

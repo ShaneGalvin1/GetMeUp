@@ -27,6 +27,10 @@
 
     <string name="dialog_days_title">Frequency</string>
 
+    <string name="title_activity_put_off_alarm">Turn off alarm</string>
+    <string name="titla_activity_put_off_shake_alarm_off">Turn off shake alarm</string>
+    <string name="title_activity_put_walk_alarm_off">Turn off walk alarm</string>
+
     <string-array name="days_array">
         <item>Monday</item>
         <item>Tuesday</item>

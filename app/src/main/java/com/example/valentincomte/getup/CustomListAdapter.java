@@ -76,7 +76,6 @@ public class CustomListAdapter extends BaseAdapter {
         ImageView gps = (ImageView) convertView.findViewById(R.id.gpsIcon);
         ImageView talk = (ImageView) convertView.findViewById(R.id.speakIcon);
         ImageView shake = (ImageView) convertView.findViewById(R.id.shakeIcon);
-        ImageView puzzle = (ImageView) convertView.findViewById(R.id.puzzleIcon);
 
         alarmOn = (ImageButton) convertView.findViewById(R.id.alarmButton);
         alarmOn.setFocusable(false);
@@ -168,14 +167,6 @@ public class CustomListAdapter extends BaseAdapter {
         else
         {
             talk.setAlpha(((float) 1.0));
-        }
-        if(!a.puzzle)
-        {
-            puzzle.setAlpha(((float) 0.2));
-        }
-        else
-        {
-            puzzle.setAlpha(((float) 1.0));
         }
         return convertView;
     }

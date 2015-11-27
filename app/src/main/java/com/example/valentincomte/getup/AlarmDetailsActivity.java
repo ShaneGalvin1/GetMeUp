@@ -5,9 +5,7 @@ import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.RingtoneManager;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -24,10 +21,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * This class is the Activity for our create/update alarm screen
@@ -40,6 +35,10 @@ import java.util.List;
  *  - to validate its choice
  * When a user validate an alarm it is created in the database and an alarm for the set time is created
  * via the alarmManager.
+ * After its mission is completed, the AlarmDetailsActivity closes and the user gets back to the AlarmListActivity
+ *
+ * Please note that in the current version, the team was not able to make the alarm frequency work due
+ * to big issues with the AlarmManager
  */
 
 public class AlarmDetailsActivity extends AppCompatActivity {
@@ -58,6 +57,12 @@ public class AlarmDetailsActivity extends AppCompatActivity {
     Intent AlarmIntent;
 
 
+    // In this onCreate method we are setting up everything the Activity needs to run properly
+    // Depending if an id was passed or no the activity will create a new AlarmModel or take on from the database
+    // It will populate all its content with the default choices or the choices stored in the AlarmModel
+    // The ringToneContainer will start an activity when clicked on an return a result that will be stored in the model
+    // The daysPicker is a dialog containing a list of days and checkboxes. The list is updated with the model content
+    //    at any time.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,7 +158,11 @@ public class AlarmDetailsActivity extends AppCompatActivity {
         });
     }
 
-
+    // This method is used to setup the content for the spinner and to determine the actions
+    // when an item from the spinner is used.
+    // The spinner will determine the alarm type and each time one of its item is clicked it
+    // will open a new activity corresponding to the item selected and wait for a result.
+    // Before starting the new activities it will set the global value: alarmType, isShake, isWalk, isTalk
     void setUpTheSpinner()
     {
         spinner = (Spinner) findViewById(R.id.alarmType_spinner);
@@ -198,6 +207,12 @@ public class AlarmDetailsActivity extends AppCompatActivity {
         });
     }
 
+    // This method will handle the multiple cases where the activity needs to wait for another's results
+    // On the alarmTone case the method will get back the uri and set the textView accordingly.
+    // The alarmTone part was inspired from answers on stackOverflow
+    // On the alarmType case the method will analyze the given type and set the models attributes and the
+    // alarmIntent's attribute accordingly
+    // Note: this method could easily be refactored and is currently missing the default alarm type
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -260,6 +275,12 @@ public class AlarmDetailsActivity extends AppCompatActivity {
         return true;
     }
 
+    // This method is the method called when one of the action bar button is clicked
+    // On a home click it simply returns to the AlarmListActivity
+    // On a save click it will ask for an update of the model, create or update the alarm in the database
+    // and then create two alarmManager to start the alarm at the given time and to toggle the airplane mode
+    // if required. When done it goes back to the AlarmListActivity
+    // On a delete click it will simply delete the given alarm if present and go back to the AlarmListActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -316,6 +337,7 @@ public class AlarmDetailsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // This method is used to update the AlarmModel with the content the user set on the screen
     public void updateAlarmFromDetails() {
         for (int i=0; i < 7; i++) {
             if (tempDays.contains(i)){

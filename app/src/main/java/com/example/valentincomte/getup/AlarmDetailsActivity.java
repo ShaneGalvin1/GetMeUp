@@ -278,6 +278,20 @@ public class AlarmDetailsActivity extends AppCompatActivity {
 
                 setResult(RESULT_OK);
                 finish();
+                break;
+            }
+            case R.id.action_delete_alarm: {
+                if(alarmDetails.id < 0){
+                    setResult(RESULT_OK);
+                    finish();
+                    break;
+                }else{
+                    AlarmDBHelper db = new AlarmDBHelper(this);
+                    db.deleteAlarm(alarmDetails.id);
+                    setResult(RESULT_OK);
+                    finish();
+                    break;
+                }
             }
         }
 
